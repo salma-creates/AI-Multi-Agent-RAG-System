@@ -11,10 +11,10 @@ export async function getHealth() {
   return res.json();
 }
 
-export async function uploadDocument(file, domain = 'general') {
+export async function uploadDocument(file) {
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('domain', domain);
+  formData.append('domain', 'general');
 
   const res = await fetch(`${API_BASE_URL}/upload`, {
     method: 'POST',

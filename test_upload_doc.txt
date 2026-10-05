@@ -1,0 +1,1 @@
+LUMINA AI Real Upload Test Document. Lumina AI is an enterprise Multi-Agent Retrieval-Augmented Generation system. It processes PDF, DOCX, TXT, and CSV files, extracts structured text units, generates 3072-dimensional vector embeddings, and performs cosine similarity search across indexed document chunks.

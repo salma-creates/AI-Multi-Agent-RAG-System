@@ -8,13 +8,12 @@ import KnowledgeBase from './pages/KnowledgeBase';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 
-import { getHealth, preloadBenchmark } from './services/api';
+import { getHealth } from './services/api';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('assistant');
   const [healthData, setHealthData] = useState(null);
   const [toast, setToast] = useState(null);
-  const [isPreloading, setIsPreloading] = useState(false);
 
   const fetchHealth = async () => {
     try {
@@ -28,25 +27,12 @@ export default function App() {
 
   useEffect(() => {
     fetchHealth();
-    const interval = setInterval(fetchHealth, 10000);
+    const interval = setInterval(fetchHealth, 5000);
     return () => clearInterval(interval);
   }, []);
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
-  };
-
-  const handlePreloadBenchmark = async () => {
-    try {
-      setIsPreloading(true);
-      const res = await preloadBenchmark();
-      showToast(res.message || 'Benchmark test document ingested!', 'success');
-      await fetchHealth();
-    } catch (err) {
-      showToast(err.message || 'Preloading benchmark failed.', 'error');
-    } finally {
-      setIsPreloading(false);
-    }
   };
 
   return (
@@ -68,11 +54,7 @@ export default function App() {
 
         <main style={{ flex: 1, backgroundColor: 'transparent', overflowY: 'auto' }}>
           {activeTab === 'home' && (
-            <Home
-              setActiveTab={setActiveTab}
-              onPreloadBenchmark={handlePreloadBenchmark}
-              isPreloading={isPreloading}
-            />
+            <Home setActiveTab={setActiveTab} />
           )}
 
           {activeTab === 'assistant' && (
@@ -101,4 +83,3 @@ export default function App() {
     </div>
   );
 }
-

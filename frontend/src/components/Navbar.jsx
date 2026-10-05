@@ -82,7 +82,7 @@ export default function Navbar({ healthData, onOpenSettings }) {
             backgroundColor: isHealthy ? '#16A34A' : '#DC2626',
             display: 'inline-block'
           }}></span>
-          <span>{isHealthy ? 'FastAPI Online' : 'Connecting...'}</span>
+          <span>{healthData === null ? 'Checking Status...' : isHealthy ? 'FastAPI Online' : 'Backend Disconnected'}</span>
         </div>
 
         {/* Quick Settings Icon */}
