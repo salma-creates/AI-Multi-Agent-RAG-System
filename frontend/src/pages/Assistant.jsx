@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Volume2, VolumeX, Pause, Play, RotateCcw, Bot, User, Sparkles, HelpCircle } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, RotateCcw, Bot, User, Sparkles, HelpCircle } from 'lucide-react';
 import TransparencyPanel from '../components/TransparencyPanel';
 import { queryPipeline } from '../services/api';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
@@ -27,7 +27,7 @@ export default function Assistant({ showToast }) {
     }
   });
 
-  const { speak, stop: stopTts, pause: pauseTts, resume: resumeTts, isSpeaking, isPaused, isSupported: isTtsSupported } = useSpeechSynthesis();
+  const { speak, stop: stopTts, isSpeaking, isSupported: isTtsSupported } = useSpeechSynthesis();
 
   // Keep transcript synced to input
   useEffect(() => {
@@ -127,14 +127,14 @@ export default function Assistant({ showToast }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 65px)', maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '1rem 1.5rem' }}>
       {/* Header Controls */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid #FEF08A' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: 'rgba(99, 102, 241, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Sparkles style={{ width: '18px', height: '18px', color: '#818CF8' }} />
+          <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#FEF08A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Sparkles style={{ width: '18px', height: '18px', color: '#D97706' }} />
           </div>
           <div>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFF' }}>AI Assistant Chat</h2>
-            <p style={{ fontSize: '0.75rem', color: '#94A3B8' }}>Multi-Agent Grounded RAG & Conversation Memory</p>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#451A03' }}>AI Assistant Chat</h2>
+            <p style={{ fontSize: '0.75rem', color: '#854D0E', fontWeight: 600 }}>Multi-Agent Grounded RAG & Conversation Memory</p>
           </div>
         </div>
 
@@ -149,17 +149,17 @@ export default function Assistant({ showToast }) {
         {messages.map((msg) => (
           <div key={msg.id} style={{ display: 'flex', flexDirection: 'column', alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
             {/* Avatar & Sender Info */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', fontSize: '0.75rem', color: '#94A3B8' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', fontSize: '0.75rem', color: '#854D0E', fontWeight: 600 }}>
               {msg.role === 'user' ? (
                 <>
                   <span>You</span>
-                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#4F46E5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <User style={{ width: '12px', height: '12px', color: '#FFF' }} />
                   </div>
                 </>
               ) : (
                 <>
-                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#15803D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Bot style={{ width: '12px', height: '12px', color: '#FFF' }} />
                   </div>
                   <span>Lumina Assistant</span>
@@ -173,21 +173,23 @@ export default function Assistant({ showToast }) {
               maxWidth: '85%',
               padding: '1rem 1.25rem',
               borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-              backgroundColor: msg.role === 'user' ? '#3730A3' : '#1E293B',
-              color: '#F8FAFC',
+              backgroundColor: msg.role === 'user' ? '#FEF08A' : '#FFFFFF',
+              color: msg.role === 'user' ? '#713F12' : '#1E293B',
               fontSize: '0.92rem',
               lineHeight: 1.6,
-              border: msg.isError ? '1px solid #EF4444' : '1px solid rgba(255, 255, 255, 0.08)',
+              fontWeight: msg.role === 'user' ? 600 : 400,
+              border: msg.isError ? '1px solid #FCA5A5' : '1px solid #FEF08A',
+              boxShadow: '0 4px 15px rgba(234, 179, 8, 0.06)',
               whiteSpace: 'pre-wrap'
             }}>
               {msg.text}
 
               {/* Speech Output Controls for Assistant messages */}
               {msg.role === 'assistant' && isTtsSupported && (
-                <div style={{ marginTop: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ marginTop: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid #FEF08A', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <button
                     onClick={() => isSpeaking ? stopTts() : speak(msg.text)}
-                    style={{ background: 'none', border: 'none', color: '#818CF8', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.75rem' }}
+                    style={{ background: 'none', border: 'none', color: '#B45309', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.75rem', fontWeight: 600 }}
                   >
                     {isSpeaking ? <VolumeX style={{ width: '14px', height: '14px' }} /> : <Volume2 style={{ width: '14px', height: '14px' }} />}
                     <span>{isSpeaking ? 'Stop Audio' : 'Listen Answer'}</span>
@@ -205,12 +207,12 @@ export default function Assistant({ showToast }) {
 
         {/* Loading Indicator */}
         {isLoading && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#94A3B8', fontSize: '0.88rem' }}>
-            <div style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#854D0E', fontSize: '0.88rem' }}>
+            <div style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: '#15803D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Bot style={{ width: '14px', height: '14px', color: '#FFF' }} />
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', backgroundColor: '#1E293B', padding: '0.75rem 1rem', borderRadius: '12px' }}>
-              <div className="animate-spin-fast" style={{ width: '16px', height: '16px', border: '2px solid #818CF8', borderTopColor: 'transparent', borderRadius: '50%' }}></div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', backgroundColor: '#FFFFFF', border: '1px solid #FEF08A', padding: '0.75rem 1rem', borderRadius: '12px' }}>
+              <div className="animate-spin-fast" style={{ width: '16px', height: '16px', border: '2px solid #D97706', borderTopColor: 'transparent', borderRadius: '50%' }}></div>
               <span>Multi-Agent Pipeline resolving query...</span>
             </div>
           </div>
@@ -221,16 +223,16 @@ export default function Assistant({ showToast }) {
 
       {/* Clarification Response Chips */}
       {pendingClarification && (
-        <div style={{ marginBottom: '0.75rem', padding: '0.75rem', borderRadius: '8px', backgroundColor: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <HelpCircle style={{ width: '20px', height: '20px', color: '#F59E0B' }} />
-          <div style={{ flex: 1, fontSize: '0.82rem', color: '#FCD34D' }}>
+        <div style={{ marginBottom: '0.75rem', padding: '0.75rem', borderRadius: '8px', backgroundColor: '#FEF9C3', border: '1px solid #FDE047', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <HelpCircle style={{ width: '20px', height: '20px', color: '#D97706' }} />
+          <div style={{ flex: 1, fontSize: '0.82rem', color: '#713F12' }}>
             <strong>Clarification Needed:</strong> {pendingClarification.prompt}
           </div>
         </div>
       )}
 
       {/* Input Form Bar */}
-      <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', backgroundColor: '#1E293B', padding: '0.5rem', borderRadius: '12px', border: '1px solid #334155' }}>
+      <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', backgroundColor: '#FFFFFF', padding: '0.5rem', borderRadius: '12px', border: '1px solid #FDE047', boxShadow: '0 4px 20px rgba(234, 179, 8, 0.1)' }}>
         {/* STT Microphone Toggle */}
         <button
           type="button"
@@ -241,8 +243,8 @@ export default function Assistant({ showToast }) {
             height: '42px',
             borderRadius: '10px',
             border: 'none',
-            backgroundColor: isListening ? '#EF4444' : '#334155',
-            color: '#FFF',
+            backgroundColor: isListening ? '#EF4444' : '#FEF08A',
+            color: isListening ? '#FFF' : '#713F12',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
@@ -251,7 +253,7 @@ export default function Assistant({ showToast }) {
             boxShadow: isListening ? '0 0 15px rgba(239, 68, 68, 0.6)' : 'none'
           }}
         >
-          {isListening ? <MicOff style={{ width: '20px', height: '20px' }} /> : <Mic style={{ width: '20px', height: '20px', color: '#A5B4FC' }} />}
+          {isListening ? <MicOff style={{ width: '20px', height: '20px' }} /> : <Mic style={{ width: '20px', height: '20px', color: '#B45309' }} />}
         </button>
 
         {/* Input Text Box */}
@@ -265,10 +267,11 @@ export default function Assistant({ showToast }) {
             flex: 1,
             backgroundColor: 'transparent',
             border: 'none',
-            color: '#FFF',
+            color: '#1E293B',
             fontSize: '0.95rem',
             padding: '0.5rem',
-            outline: 'none'
+            outline: 'none',
+            fontWeight: 500
           }}
         />
 

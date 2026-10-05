@@ -87,38 +87,38 @@ export default function KnowledgeBase({ showToast, onDocumentUploaded }) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFF' }}>Knowledge Base Management</h1>
-          <p style={{ fontSize: '0.88rem', color: '#94A3B8' }}>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#451A03' }}>Knowledge Base Management</h1>
+          <p style={{ fontSize: '0.88rem', color: '#854D0E', fontWeight: 500 }}>
             Upload knowledge documents (PDF, DOCX, TXT, CSV) to immediately index them into the semantic vector store.
           </p>
         </div>
 
         <button className="btn-secondary" onClick={handlePreloadBenchmark} disabled={isPreloading}>
-          <Database style={{ width: '16px', height: '16px', color: '#818CF8' }} />
+          <Database style={{ width: '16px', height: '16px', color: '#D97706' }} />
           {isPreloading ? 'Preloading Test Doc...' : 'Preload Benchmark Doc'}
         </button>
       </div>
 
       {/* Upload Box */}
-      <div className="glass-card" style={{ padding: '2rem', marginBottom: '2rem', border: '2px dashed rgba(99, 102, 241, 0.4)', textAlign: 'center' }}>
-        <div style={{ width: '50px', height: '50px', borderRadius: '12px', backgroundColor: 'rgba(99, 102, 241, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-          <Upload style={{ width: '26px', height: '26px', color: '#818CF8' }} />
+      <div className="glass-card" style={{ padding: '2rem', marginBottom: '2rem', border: '2px dashed #FDE047', textAlign: 'center', backgroundColor: '#FFFDF0' }}>
+        <div style={{ width: '50px', height: '50px', borderRadius: '12px', backgroundColor: '#FEF08A', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+          <Upload style={{ width: '26px', height: '26px', color: '#D97706' }} />
         </div>
 
-        <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem', color: '#F1F5F9' }}>
+        <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '0.5rem', color: '#451A03' }}>
           Upload Knowledge Document
         </h3>
-        <p style={{ fontSize: '0.85rem', color: '#94A3B8', marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '0.85rem', color: '#854D0E', marginBottom: '1.25rem' }}>
           Supported formats: <strong>PDF, DOCX, TXT, CSV</strong> (Max 30MB)
         </p>
 
         {/* Domain selection */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem', backgroundColor: '#1E293B', padding: '0.5rem 1rem', borderRadius: '8px' }}>
-          <span style={{ fontSize: '0.82rem', color: '#CBD5E1', fontWeight: 500 }}>Target Domain:</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem', backgroundColor: '#FFFFFF', border: '1px solid #FEF08A', padding: '0.5rem 1rem', borderRadius: '8px' }}>
+          <span style={{ fontSize: '0.82rem', color: '#713F12', fontWeight: 600 }}>Target Domain:</span>
           <select
             value={selectedDomain}
             onChange={(e) => setSelectedDomain(e.target.value)}
-            style={{ backgroundColor: '#0F172A', color: '#FFF', border: '1px solid #334155', borderRadius: '6px', padding: '0.25rem 0.5rem', fontSize: '0.82rem', outline: 'none' }}
+            style={{ backgroundColor: '#FEF9C3', color: '#451A03', border: '1px solid #FDE047', borderRadius: '6px', padding: '0.25rem 0.5rem', fontSize: '0.82rem', outline: 'none', fontWeight: 600 }}
           >
             <option value="general">General Knowledge</option>
             <option value="tech">Technology & Operations</option>
@@ -145,7 +145,7 @@ export default function KnowledgeBase({ showToast, onDocumentUploaded }) {
       {/* Document Table */}
       <div className="glass-card" style={{ padding: '1.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFF' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#451A03' }}>
             Ingested Documents ({documents.length})
           </h3>
           <button className="btn-secondary" onClick={fetchDocs} style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
@@ -155,16 +155,16 @@ export default function KnowledgeBase({ showToast, onDocumentUploaded }) {
         </div>
 
         {isLoading ? (
-          <div style={{ padding: '2rem', textAlign: 'center', color: '#94A3B8' }}>Loading document inventory...</div>
+          <div style={{ padding: '2rem', textAlign: 'center', color: '#854D0E' }}>Loading document inventory...</div>
         ) : documents.length === 0 ? (
-          <div style={{ padding: '2.5rem', textAlign: 'center', color: '#94A3B8' }}>
+          <div style={{ padding: '2.5rem', textAlign: 'center', color: '#854D0E', fontWeight: 500 }}>
             No documents ingested yet. Upload a PDF, DOCX, TXT, or CSV file above to start querying!
           </div>
         ) : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#94A3B8', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <tr style={{ borderBottom: '2px solid #FEF08A', color: '#854D0E', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   <th style={{ padding: '0.75rem 1rem' }}>Document Name</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Format</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Domain</th>
@@ -176,20 +176,20 @@ export default function KnowledgeBase({ showToast, onDocumentUploaded }) {
               </thead>
               <tbody>
                 {documents.map((doc) => (
-                  <tr key={doc.document_id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.875rem 1rem', fontWeight: 600, color: '#F1F5F9' }}>
+                  <tr key={doc.document_id} style={{ borderBottom: '1px solid #FEF08A' }}>
+                    <td style={{ padding: '0.875rem 1rem', fontWeight: 700, color: '#1E293B' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <FileText style={{ width: '16px', height: '16px', color: '#818CF8' }} />
+                        <FileText style={{ width: '16px', height: '16px', color: '#D97706' }} />
                         <span>{doc.document_name}</span>
                       </div>
                     </td>
-                    <td style={{ padding: '0.875rem 1rem', textTransform: 'uppercase', fontSize: '0.78rem', color: '#94A3B8' }}>
+                    <td style={{ padding: '0.875rem 1rem', textTransform: 'uppercase', fontSize: '0.78rem', color: '#78350F', fontWeight: 600 }}>
                       {doc.file_type}
                     </td>
-                    <td style={{ padding: '0.875rem 1rem', color: '#CBD5E1' }}>
+                    <td style={{ padding: '0.875rem 1rem', color: '#451A03', fontWeight: 500 }}>
                       {doc.domain}
                     </td>
-                    <td style={{ padding: '0.875rem 1rem', color: '#94A3B8', fontSize: '0.82rem' }}>
+                    <td style={{ padding: '0.875rem 1rem', color: '#78350F', fontSize: '0.82rem' }}>
                       {formatBytes(doc.file_size)}
                     </td>
                     <td style={{ padding: '0.875rem 1rem' }}>
@@ -203,7 +203,7 @@ export default function KnowledgeBase({ showToast, onDocumentUploaded }) {
                         <span className="badge badge-low" title={doc.error_message}>Failed</span>
                       )}
                     </td>
-                    <td style={{ padding: '0.875rem 1rem', fontWeight: 700, color: '#818CF8' }}>
+                    <td style={{ padding: '0.875rem 1rem', fontWeight: 800, color: '#B45309' }}>
                       {doc.chunk_count}
                     </td>
                     <td style={{ padding: '0.875rem 1rem', textAlign: 'right' }}>
