@@ -1,0 +1,27 @@
+KUBERNETES & CLOUD INFRASTRUCTURE OPERATIONS MANUAL
+
+Document ID: TECH-OPS-2026-V3
+Domain: Cloud Infrastructure & DevOps
+Classification: Operational Technical Guide
+
+1. CLUSTER TOPOLOGY & CONTROL PLANE
+The Lumina production Kubernetes cluster operates with 3 control plane nodes and 12 worker nodes distributed across 3 availability zones (us-east-1a, us-east-1b, us-east-1c).
+The control plane utilizes etcd v3.5.9 with automated snapshotting every 30 minutes.
+Snapshot retention policy is strictly 14 days, with secondary off-site replication to Google Cloud Storage.
+
+2. POD AUTOSCALING PROCEDURE
+Horizontal Pod Autoscaler (HPA) triggers scaling actions based on custom metrics:
+- CPU utilization threshold: 75%
+- Memory utilization threshold: 80%
+- Queue depth metric: > 50 messages per consumer pod
+Procedure to configure HPA:
+Step 1: Apply the metrics-server manifest using 'kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml'.
+Step 2: Define the HPA target deployment in hpa.yaml with minReplicas=3 and maxReplicas=25.
+Step 3: Run 'kubectl apply -f hpa.yaml' and verify with 'kubectl get hpa -w'.
+
+3. INCIDENT RESPONSE & DISASTER RECOVERY
+In the event of a total availability zone failure:
+- Failover mechanism initiates automated DNS rerouting via Cloudflare within 45 seconds.
+- Database recovery utilizes Spanner multi-region active-active read-write replicas.
+- RTO (Recovery Time Objective) is guaranteed at 3 minutes.
+- RPO (Recovery Point Objective) is zero seconds for synchronous transactions.

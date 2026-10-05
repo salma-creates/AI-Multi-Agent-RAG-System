@@ -1,0 +1,25 @@
+CLINICAL NEUROSCIENCE & SYNAPTIC PLASTICITY REVIEW
+
+Document ID: MED-NEURO-2026-B
+Domain: Neuroscience & Cognitive Medicine
+Classification: Clinical Research Summary
+
+1. SYNAPTIC PLASTICITY & LONG-TERM POTENTIATION (LTP)
+Long-Term Potentiation (LTP) is the persistent strengthening of synapses based on recent patterns of activity.
+In the hippocampal CA1 region, LTP induction requires high-frequency stimulation (100 Hz tetanus) leading to post-synaptic depolarization.
+This depolarization displaces the magnesium block (Mg2+) from NMDA receptor pores, permitting calcium (Ca2+) influx.
+The downstream cascade activates CaMKII (calcium/calmodulin-dependent protein kinase II), resulting in AMPA receptor trafficking and insertion into the post-synaptic density.
+
+2. NEURODEGENERATIVE BIOMARKERS
+Alzheimer's pathology staging relies on three primary cerebrospinal fluid (CSF) biomarkers:
+- Amyloid-beta 42/40 ratio (Abeta42/Abeta40)
+- Phosphorylated tau at threonine 181 (p-tau181)
+- Total tau (t-tau) concentrations
+PET neuroimaging utilizing Pittsburgh Compound B (PiB) binds specifically to fibrillar beta-amyloid plaques.
+Threshold for biomarker positivity in preclinical trials is p-tau181 > 19.5 pg/mL.
+
+3. COGNITIVE REHABILITATION PROTOCOL
+Procedure for post-stroke aphasia intervention:
+Step 1: Administer the Western Aphasia Battery (WAB-R) assessment within 72 hours of stability.
+Step 2: Initiate Melodic Intonation Therapy (MIT) for 45 minutes daily over 6 consecutive weeks.
+Step 3: Measure expressive vocabulary gains weekly using the Boston Naming Test.

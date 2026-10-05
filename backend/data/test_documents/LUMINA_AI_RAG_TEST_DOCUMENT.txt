@@ -1,0 +1,219 @@
+LUMINA AI — RAG TEST DOCUMENT
+
+Document ID: LUMINA-RAG-TEST-001
+Version: 1.0
+Created for: Retrieval-Augmented Generation Testing
+
+
+1. INTRODUCTION
+
+Lumina AI is an AI-powered knowledge retrieval system designed to answer questions using information available in a user's knowledge base.
+
+This document is created specifically to test document ingestion, chunking, semantic retrieval, response generation, source attribution, confidence handling, and hallucination prevention.
+
+
+2. UNIQUE TEST FACTS
+
+The Lumina RAG test project was created in the year 2026.
+
+The unique project code for this document is LUMINA-8472.
+
+The retrieval similarity threshold used in this test is 0.73.
+
+The maximum number of retrieved chunks in the standard test configuration is 5.
+
+The minimum number of retrieved chunks in the basic test configuration is 1.
+
+The Lumina test environment contains exactly 5 AI agents.
+
+
+3. AI AGENTS
+
+The five AI agents used in the Lumina test environment are:
+
+1. Query Understanding Agent
+2. Retrieval Agent
+3. Response Generation Agent
+4. Clarification Agent
+5. Conversation Memory Agent
+
+
+4. QUERY UNDERSTANDING AGENT
+
+The Query Understanding Agent analyzes the user's question before retrieval.
+
+It classifies questions into four main categories:
+
+- Factual
+- Procedural
+- Comparative
+- Ambiguous
+
+A factual question asks for a specific piece of information.
+
+A procedural question asks how to perform an action or process.
+
+A comparative question asks for differences or similarities between two or more things.
+
+An ambiguous question does not contain enough information to determine the user's intended meaning.
+
+
+5. RETRIEVAL AGENT
+
+The Retrieval Agent searches the indexed knowledge base for information relevant to the user's query.
+
+The standard Lumina test configuration retrieves up to 5 relevant chunks.
+
+Each retrieved chunk can contain the following metadata:
+
+- Document name
+- Document ID
+- Chunk ID
+- Section
+- Page number
+- Relevance score
+
+The retrieval process should prioritize information that is semantically related to the user's question.
+
+If no sufficiently relevant information is found, the system should not use an unrelated chunk as evidence.
+
+
+6. RESPONSE GENERATION AGENT
+
+The Response Generation Agent creates the final answer using the retrieved information.
+
+The generated answer should remain grounded in the retrieved content.
+
+The system should not invent facts that are not supported by the retrieved information.
+
+When source information is available, the response should identify the document or source used to generate the answer.
+
+
+7. CLARIFICATION AGENT
+
+The Clarification Agent handles questions that are unclear or incomplete.
+
+For example:
+
+"Tell me about it."
+
+This question is ambiguous because the system does not know what "it" refers to.
+
+The system should ask the user for clarification rather than selecting a random topic.
+
+After the user provides clarification, the original question and clarification should be combined into a refined query.
+
+
+8. CONVERSATION MEMORY AGENT
+
+The Conversation Memory Agent maintains relevant information from previous turns in a conversation.
+
+For example:
+
+User: What is the Retrieval Agent?
+
+User: What does it do?
+
+The second question should be interpreted using the context of the first question.
+
+Conversation memory should contain relevant previous queries, responses, referenced documents, entities, and topics.
+
+Irrelevant conversation history should not be unnecessarily included in a new query.
+
+
+9. TEST CONFIGURATION
+
+The following values are used for this RAG test:
+
+Project Code: LUMINA-8472
+Creation Year: 2026
+Similarity Threshold: 0.73
+Maximum Top-K: 5
+Minimum Top-K: 1
+Number of AI Agents: 5
+Number of Query Categories: 4
+
+
+10. EXPECTED RAG BEHAVIOR
+
+When a user asks a question whose answer exists in this document, Lumina should retrieve the relevant chunk and generate an answer based on that information.
+
+When a user asks for information that does not exist in this document, Lumina should not pretend that the information exists in the document.
+
+For example, this document does not specify the name of the person who created Lumina AI.
+
+Therefore, if a user asks:
+
+"Who created Lumina AI?"
+
+the system should state that this information is not available in the uploaded document.
+
+The system should not invent a person's name.
+
+
+11. TEST QUESTIONS
+
+The following questions can be used to test the document:
+
+Question 1:
+When was the Lumina RAG test project created?
+
+Expected answer:
+2026.
+
+Question 2:
+What is the unique project code?
+
+Expected answer:
+LUMINA-8472.
+
+Question 3:
+What similarity threshold is used?
+
+Expected answer:
+0.73.
+
+Question 4:
+How many AI agents are in the Lumina test environment?
+
+Expected answer:
+5.
+
+Question 5:
+What are the names of the five AI agents?
+
+Expected answer:
+Query Understanding Agent, Retrieval Agent, Response Generation Agent, Clarification Agent, and Conversation Memory Agent.
+
+Question 6:
+What are the four query categories?
+
+Expected answer:
+Factual, Procedural, Comparative, and Ambiguous.
+
+Question 7:
+What is the maximum number of chunks retrieved in the standard configuration?
+
+Expected answer:
+5.
+
+Question 8:
+What metadata can a retrieved chunk contain?
+
+Expected answer:
+Document name, document ID, chunk ID, section, page number, and relevance score.
+
+Question 9:
+What should Lumina do when a question is ambiguous?
+
+Expected answer:
+The Clarification Agent should ask the user for clarification.
+
+Question 10:
+Who created Lumina AI?
+
+Expected answer:
+The document does not provide this information.
+
+
+12. END OF TEST DOCUMENT
