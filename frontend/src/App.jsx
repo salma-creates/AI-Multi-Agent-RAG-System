@@ -50,15 +50,23 @@ export default function App() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#0B0F19', color: '#F9FAFB' }}>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#FAF8ED', color: '#1E293B', overflow: 'hidden' }}>
+      {/* Animated Subtle Background Graphics - Soft Pastel Yellow & Cream Orbs */}
+      <div className="bg-ambient-wrapper" aria-hidden="true">
+        <div className="ambient-orb orb-1"></div>
+        <div className="ambient-orb orb-2"></div>
+        <div className="ambient-orb orb-3"></div>
+        <div className="ambient-grid-pattern"></div>
+      </div>
+
       {/* Top Header Navbar */}
       <Navbar healthData={healthData} onOpenSettings={() => setActiveTab('settings')} />
 
       {/* Body Content with Sidebar */}
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flex: 1 }}>
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        <main style={{ flex: 1, backgroundColor: '#0B0F19', overflowY: 'auto' }}>
+        <main style={{ flex: 1, backgroundColor: 'transparent', overflowY: 'auto' }}>
           {activeTab === 'home' && (
             <Home
               setActiveTab={setActiveTab}
@@ -93,3 +101,4 @@ export default function App() {
     </div>
   );
 }
+

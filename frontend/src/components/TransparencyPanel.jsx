@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, FileText, CheckCircle2, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { ChevronDown, ChevronUp, FileText, AlertTriangle, ShieldCheck } from 'lucide-react';
 
 export default function TransparencyPanel({ responseData }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +31,8 @@ export default function TransparencyPanel({ responseData }) {
     <div style={{
       marginTop: '1rem',
       borderRadius: '10px',
-      backgroundColor: '#172033',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      backgroundColor: '#FFFDF0',
+      border: '1px solid #FDE047',
       overflow: 'hidden'
     }}>
       {/* Header bar */}
@@ -46,14 +46,14 @@ export default function TransparencyPanel({ responseData }) {
           padding: '0.75rem 1rem',
           background: 'none',
           border: 'none',
-          color: '#E5E7EB',
+          color: '#713F12',
           cursor: 'pointer',
           textAlign: 'left'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <ShieldCheck style={{ width: '18px', height: '18px', color: '#818CF8' }} />
-          <span style={{ fontWeight: 600, fontSize: '0.88rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <ShieldCheck style={{ width: '18px', height: '18px', color: '#D97706' }} />
+          <span style={{ fontWeight: 700, fontSize: '0.88rem' }}>
             Sources & Response Transparency ({sources.length} {sources.length === 1 ? 'Source' : 'Sources'})
           </span>
           <span className={`badge ${getConfidenceBadgeClass(confidence_label)}`}>
@@ -70,8 +70,8 @@ export default function TransparencyPanel({ responseData }) {
       {isOpen && (
         <div style={{
           padding: '1rem',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          backgroundColor: '#0F172A',
+          borderTop: '1px solid #FEF08A',
+          backgroundColor: '#FFFFFF',
           fontSize: '0.85rem'
         }}>
           {/* Metadata Bar */}
@@ -81,36 +81,37 @@ export default function TransparencyPanel({ responseData }) {
             gap: '0.75rem',
             padding: '0.75rem',
             borderRadius: '8px',
-            backgroundColor: '#1E293B',
+            backgroundColor: '#FEFCE8',
+            border: '1px solid #FEF08A',
             marginBottom: '1rem',
-            color: '#94A3B8',
+            color: '#475569',
             fontSize: '0.78rem'
           }}>
             <div>
-              <strong style={{ color: '#E2E8F0' }}>Query Classification:</strong> {query_type} ({(classification_confidence * 100).toFixed(0)}%)
+              <strong style={{ color: '#1E293B' }}>Query Classification:</strong> {query_type} ({(classification_confidence * 100).toFixed(0)}%)
             </div>
             <div>
-              <strong style={{ color: '#E2E8F0' }}>Embedding Model:</strong> {embedding_model}
+              <strong style={{ color: '#1E293B' }}>Embedding Model:</strong> {embedding_model}
             </div>
             <div>
-              <strong style={{ color: '#E2E8F0' }}>LLM Model:</strong> {llm_model}
+              <strong style={{ color: '#1E293B' }}>LLM Model:</strong> {llm_model}
             </div>
             <div>
-              <strong style={{ color: '#E2E8F0' }}>Pipeline Latency:</strong> {latency_ms} ms
+              <strong style={{ color: '#1E293B' }}>Pipeline Latency:</strong> {latency_ms} ms
             </div>
           </div>
 
           {/* Sources List */}
           {sources.length === 0 ? (
-            <div style={{ color: '#94A3B8', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <AlertTriangle style={{ width: '16px', height: '16px', color: '#F59E0B' }} />
+            <div style={{ color: '#854D0E', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <AlertTriangle style={{ width: '16px', height: '16px', color: '#D97706' }} />
               {is_general_knowledge
                 ? 'Answer generated from general AI knowledge. No private document sources were referenced.'
                 : 'No matching document chunks met the relevance threshold.'}
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#818CF8', fontWeight: 700 }}>
+              <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#B45309', fontWeight: 800 }}>
                 Retrieved Supporting Evidence:
               </div>
 
@@ -118,22 +119,23 @@ export default function TransparencyPanel({ responseData }) {
                 <div key={i} style={{
                   padding: '0.875rem',
                   borderRadius: '8px',
-                  backgroundColor: '#1E293B',
-                  border: '1px solid rgba(255, 255, 255, 0.08)'
+                  backgroundColor: '#FFFDF0',
+                  border: '1px solid #FEF08A'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, color: '#F1F5F9' }}>
-                      <FileText style={{ width: '16px', height: '16px', color: '#38BDF8' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: '#451A03' }}>
+                      <FileText style={{ width: '16px', height: '16px', color: '#D97706' }} />
                       <span>{src.document_name}</span>
-                      <span style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 400 }}>({src.page})</span>
+                      <span style={{ fontSize: '0.75rem', color: '#78350F', fontWeight: 500 }}>({src.page})</span>
                     </div>
                     <div style={{
                       fontSize: '0.75rem',
-                      fontWeight: 700,
-                      color: src.relevance_score >= 0.70 ? '#34D399' : '#FBBF24',
-                      backgroundColor: 'rgba(0, 0, 0, 0.25)',
-                      padding: '0.2rem 0.5rem',
-                      borderRadius: '4px'
+                      fontWeight: 800,
+                      color: src.relevance_score >= 0.70 ? '#15803D' : '#A16207',
+                      backgroundColor: src.relevance_score >= 0.70 ? '#DCFCE7' : '#FEF9C3',
+                      padding: '0.2rem 0.6rem',
+                      borderRadius: '4px',
+                      border: '1px solid rgba(0,0,0,0.05)'
                     }}>
                       Relevance: {(src.relevance_score * 100).toFixed(1)}%
                     </div>
@@ -141,9 +143,10 @@ export default function TransparencyPanel({ responseData }) {
 
                   <div style={{
                     fontSize: '0.82rem',
-                    color: '#CBD5E1',
+                    color: '#334155',
                     fontFamily: 'monospace',
-                    backgroundColor: '#0F172A',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid #FEF08A',
                     padding: '0.625rem',
                     borderRadius: '6px',
                     lineHeight: 1.4,

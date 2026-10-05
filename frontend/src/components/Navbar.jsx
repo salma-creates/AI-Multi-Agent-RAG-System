@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, ShieldCheck, Database, Settings } from 'lucide-react';
+import { Cpu, Database, Settings } from 'lucide-react';
 
 export default function Navbar({ healthData, onOpenSettings }) {
   const isHealthy = healthData?.status === 'healthy';
@@ -11,12 +11,13 @@ export default function Navbar({ healthData, onOpenSettings }) {
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0.875rem 1.5rem',
-      backgroundColor: 'rgba(17, 24, 39, 0.85)',
+      backgroundColor: '#FEF9C3',
       backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      borderBottom: '1px solid #FDE047',
       position: 'sticky',
       top: 0,
-      zIndex: 40
+      zIndex: 40,
+      boxShadow: '0 4px 15px rgba(234, 179, 8, 0.08)'
     }}>
       {/* Brand */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -24,19 +25,19 @@ export default function Navbar({ healthData, onOpenSettings }) {
           width: '38px',
           height: '38px',
           borderRadius: '10px',
-          background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+          background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)'
+          boxShadow: '0 0 15px rgba(245, 158, 11, 0.4)'
         }}>
           <Cpu style={{ width: '22px', height: '22px', color: '#FFF' }} />
         </div>
         <div>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFF', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h1 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#451A03', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             LUMINA <span className="gradient-text">AI</span>
           </h1>
-          <p style={{ fontSize: '0.72rem', color: '#9CA3AF', fontWeight: 500 }}>
+          <p style={{ fontSize: '0.72rem', color: '#854D0E', fontWeight: 600 }}>
             Multi-Agent RAG Knowledge Retrieval System
           </p>
         </div>
@@ -51,12 +52,13 @@ export default function Navbar({ healthData, onOpenSettings }) {
           gap: '0.4rem',
           padding: '0.35rem 0.75rem',
           borderRadius: '9999px',
-          backgroundColor: '#1F2937',
-          border: '1px solid #374151',
+          backgroundColor: '#FFFFFF',
+          border: '1px solid #FDE047',
           fontSize: '0.78rem',
-          color: '#E5E7EB'
+          fontWeight: 600,
+          color: '#713F12'
         }}>
-          <Database style={{ width: '14px', height: '14px', color: '#8B5CF6' }} />
+          <Database style={{ width: '14px', height: '14px', color: '#D97706' }} />
           <span>{indexedCount} Chunks Indexed</span>
         </div>
 
@@ -67,16 +69,17 @@ export default function Navbar({ healthData, onOpenSettings }) {
           gap: '0.4rem',
           padding: '0.35rem 0.75rem',
           borderRadius: '9999px',
-          backgroundColor: isHealthy ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)',
-          border: `1px solid ${isHealthy ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
+          backgroundColor: isHealthy ? '#DCFCE7' : '#FEE2E2',
+          border: `1px solid ${isHealthy ? '#86EFAC' : '#FCA5A5'}`,
           fontSize: '0.78rem',
-          color: isHealthy ? '#34D399' : '#F87171'
+          fontWeight: 700,
+          color: isHealthy ? '#15803D' : '#991B1B'
         }}>
-          <span style={{
+          <span className={isHealthy ? 'live-dot-pulse' : ''} style={{
             width: '8px',
             height: '8px',
             borderRadius: '50%',
-            backgroundColor: isHealthy ? '#10B981' : '#EF4444',
+            backgroundColor: isHealthy ? '#16A34A' : '#DC2626',
             display: 'inline-block'
           }}></span>
           <span>{isHealthy ? 'FastAPI Online' : 'Connecting...'}</span>
@@ -89,14 +92,14 @@ export default function Navbar({ healthData, onOpenSettings }) {
           style={{
             background: 'none',
             border: 'none',
-            color: '#9CA3AF',
+            color: '#854D0E',
             cursor: 'pointer',
             padding: '0.4rem',
             borderRadius: '6px',
             transition: 'color 0.2s'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#FFF'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#9CA3AF'}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#451A03'}
+          onMouseLeave={(e) => e.currentTarget.style.color = '#854D0E'}
         >
           <Settings style={{ width: '20px', height: '20px' }} />
         </button>
